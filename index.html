@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bali Villa Rent 🌴</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+<body>
+
+    <!-- Шапка -->
+    <header>
+        <h1>🌴 Bali Villas</h1>
+        <p>Найди виллу своей мечты</p>
+    </header>
+
+    <!-- Фильтры -->
+    <section class="filters">
+        <select id="filter-location">
+            <option value="">📍 Все локации</option>
+            <option value="Семиньяк">Семиньяк</option>
+            <option value="Чангу">Чангу</option>
+            <option value="Убуд">Убуд</option>
+            <option value="Нуса-Дуа">Нуса-Дуа</option>
+            <option value="Кута">Кута</option>
+            <option value="Джимбаран">Джимбаран</option>
+            <option value="Санур">Санур</option>
+            <option value="Улувату">Улувату</option>
+        </select>
+
+        <select id="filter-guests">
+            <option value="">👥 Гости</option>
+            <option value="2">2+</option>
+            <option value="4">4+</option>
+            <option value="6">6+</option>
+            <option value="8">8+</option>
+        </select>
+
+        <select id="filter-price">
+            <option value="">💰 Цена</option>
+            <option value="2000000">до 2M IDR</option>
+            <option value="5000000">до 5M IDR</option>
+            <option value="10000000">до 10M IDR</option>
+        </select>
+    </section>
+
+    <!-- Каталог -->
+    <section class="catalog" id="catalog">
+        <div class="loading">⏳ Загружаем виллы...</div>
+    </section>
+
+    <!-- Модалка -->
+    <div class="modal hidden" id="modal">
+        <div class="modal-content">
+            <button class="close-btn" id="close-modal">✕</button>
+
+            <div class="modal-photos" id="modal-photos"></div>
+
+            <div class="modal-body">
+                <h2 id="modal-name"></h2>
+                <div class="modal-meta" id="modal-meta"></div>
+                <p id="modal-desc"></p>
+                <div class="features" id="modal-features"></div>
+                <div class="rules" id="modal-rules"></div>
+
+                <button class="book-btn" id="modal-book">
+                    📅 Забронировать
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

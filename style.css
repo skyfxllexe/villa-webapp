@@ -1,0 +1,241 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #f5f5f5;
+    color: #222;
+    padding-bottom: 40px;
+}
+
+/* Шапка */
+header {
+    background: linear-gradient(135deg, #1a9e6e, #0f6e4a);
+    color: white;
+    text-align: center;
+    padding: 20px 16px;
+}
+
+header h1 { font-size: 22px; font-weight: 700; }
+header p  { font-size: 13px; opacity: 0.85; margin-top: 4px; }
+
+/* Фильтры */
+.filters {
+    display: flex;
+    gap: 8px;
+    padding: 10px 12px;
+    background: white;
+    overflow-x: auto;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+}
+
+.filters select {
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    padding: 6px 12px;
+    font-size: 13px;
+    background: #f9f9f9;
+    cursor: pointer;
+    outline: none;
+    white-space: nowrap;
+}
+
+/* Каталог */
+.catalog {
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.loading {
+    text-align: center;
+    color: #999;
+    padding: 40px;
+}
+
+/* Карточка */
+.villa-card {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+
+.villa-card:active { transform: scale(0.99); }
+
+.villa-photo {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.villa-placeholder {
+    width: 100%;
+    height: 180px;
+    background: linear-gradient(135deg, #a8edce, #1a9e6e);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 56px;
+}
+
+.villa-info { padding: 12px; }
+
+.villa-info h3 { font-size: 16px; font-weight: 700; }
+
+.villa-meta {
+    display: flex;
+    gap: 10px;
+    margin: 4px 0 8px;
+    font-size: 12px;
+    color: #888;
+}
+
+.villa-price {
+    font-size: 17px;
+    font-weight: 700;
+    color: #1a9e6e;
+    margin-bottom: 8px;
+}
+
+.villa-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-bottom: 10px;
+}
+
+.tag {
+    background: #f0faf5;
+    color: #1a9e6e;
+    border-radius: 20px;
+    padding: 3px 8px;
+    font-size: 11px;
+}
+
+.card-btn {
+    width: 100%;
+    padding: 10px;
+    background: #1a9e6e;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/* Модалка */
+.modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 100;
+    display: flex;
+    align-items: flex-end;
+}
+
+.modal.hidden { display: none; }
+
+.modal-content {
+    background: white;
+    border-radius: 24px 24px 0 0;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.modal-photos {
+    width: 100%;
+    height: 220px;
+    overflow-x: auto;
+    display: flex;
+    gap: 4px;
+    background: #eee;
+}
+
+.modal-photos img {
+    height: 100%;
+    width: auto;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.modal-photo-placeholder {
+    width: 100%;
+    height: 220px;
+    background: linear-gradient(135deg, #a8edce, #1a9e6e);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 72px;
+    flex-shrink: 0;
+}
+
+.modal-body { padding: 20px 16px; }
+
+.close-btn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: rgba(0,0,0,0.4);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    font-size: 16px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.modal-content { position: relative; }
+
+.modal-body h2 { font-size: 20px; margin-bottom: 6px; }
+
+.modal-meta {
+    display: flex;
+    gap: 12px;
+    font-size: 13px;
+    color: #777;
+    margin-bottom: 10px;
+}
+
+.modal-body p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #444;
+    margin-bottom: 12px;
+}
+
+.features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 12px;
+}
+
+.rules {
+    background: #fff8f0;
+    border-radius: 10px;
+    padding: 10px 12px;
+    font-size: 13px;
+    color: #888;
+    margin-bottom: 16px;
+}
+
+.book-btn {
+    width: 100%;
+    padding: 14px;
+    background: #1a9e6e;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+}
