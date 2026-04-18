@@ -1,5 +1,5 @@
 const tg      = window.Telegram.WebApp
-const API_URL = "http://localhost:8000"  // ← VPS
+const API_URL = "http://72.56.247.27:8000"  // ← VPS
 
 tg.ready()
 tg.expand()
