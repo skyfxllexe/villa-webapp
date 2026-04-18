@@ -1,17 +1,17 @@
-const tg     = window.Telegram.WebApp
-const API_URL = "http://localhost:8000"  // потом заменим на VPS/
+const tg      = window.Telegram.WebApp
+const API_URL = "http://localhost:8000"  // ← VPS
 
 tg.ready()
 tg.expand()
 
-let VILLAS        = []
-let currentVilla  = null
-const BOT_TOKEN = "8611462123:AAE3LtWIeCOtxdzcDbXYYLXA2BvmxZ1KzUQ"
+let VILLAS       = []
+let currentVilla = null
+
 // ─── Загрузка вилл с API ──────────────────────────
 async function loadVillas() {
     try {
-        const res  = await fetch(`${API_URL}/villas`)
-        VILLAS     = await res.json()
+        const res = await fetch(`${API_URL}/villas`)
+        VILLAS    = await res.json()
         renderCatalog(VILLAS)
     } catch (e) {
         document.getElementById("catalog").innerHTML = `
@@ -33,8 +33,8 @@ function renderCatalog(villas) {
         <div class="villa-card" onclick="openModal(${villa.id})">
             ${villa.photos && villa.photos.length > 0
                 ? `<img class="villa-photo"
-                        src="https://api.telegram.org/file/bot${BOT_TOKEN}/${villa.photos[0]}"
-                        onerror="this.parentElement.querySelector('.villa-placeholder') && this.remove()">`
+                        src="${API_URL}/photo/${villa.photos[0]}"
+                        onerror="this.style.display='none'">`
                 : `<div class="villa-placeholder">🌴</div>`
             }
             <div class="villa-info">
@@ -64,19 +64,18 @@ function openModal(villaId) {
     currentVilla = VILLAS.find(v => v.id === villaId)
     if (!currentVilla) return
 
-    // Фото
     const photosEl = document.getElementById("modal-photos")
     if (currentVilla.photos && currentVilla.photos.length > 0) {
         photosEl.innerHTML = currentVilla.photos.map(p =>
-            `<img src="https://api.telegram.org/file/bot${BOT_TOKEN}/${p}">`
+            `<img src="${API_URL}/photo/${p}">`  // ← токена нет!
         ).join("")
     } else {
         photosEl.innerHTML = `<div class="modal-photo-placeholder">🌴</div>`
     }
 
-    document.getElementById("modal-name").textContent   = currentVilla.name
-    document.getElementById("modal-desc").textContent   = currentVilla.description
-    document.getElementById("modal-meta").innerHTML     = `
+    document.getElementById("modal-name").textContent = currentVilla.name
+    document.getElementById("modal-desc").textContent = currentVilla.description
+    document.getElementById("modal-meta").innerHTML   = `
         <span>📍 ${currentVilla.location}</span>
         <span>👥 до ${currentVilla.guests} гостей</span>
         <span>🛏 ${currentVilla.bedrooms} спальни</span>
@@ -88,9 +87,7 @@ function openModal(villaId) {
         ).join("")
 
     document.getElementById("modal-rules").innerHTML =
-        currentVilla.rules
-            ? `📋 ${currentVilla.rules}`
-            : ""
+        currentVilla.rules ? `📋 ${currentVilla.rules}` : ""
 
     document.getElementById("modal").classList.remove("hidden")
 }
@@ -103,10 +100,9 @@ document.getElementById("close-modal").addEventListener("click", () => {
 // ─── Кнопка забронировать ─────────────────────────
 document.getElementById("modal-book").addEventListener("click", () => {
     if (!currentVilla) return
-    // Отправляем данные боту
     tg.sendData(JSON.stringify({
-        action:   "book",
-        villa_id: currentVilla.id,
+        action:     "book",
+        villa_id:   currentVilla.id,
         villa_name: currentVilla.name
     }))
 })
